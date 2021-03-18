@@ -37,7 +37,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			//proceed 
 			require "functions/register.php";
 
-			registerUser($username, $email, $password_confirm);
+			$feedback = registerUser($username, $email, $password_confirm);
+
+			echo $feedback;
 
 		}else{
 

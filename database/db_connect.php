@@ -1,11 +1,11 @@
 <?php 
 $host = 'localhost';
 $user = 'root';
-$password = '';
+$db_password = '';
 $database_name = "login_app";
 
 
-$conn = mysqli_connect($host, $user, $password, $database_name) or die("Could not connect to the server at moment..");
+$conn = mysqli_connect($host, $user, $db_password, $database_name) or die("Could not connect to the server at moment..");
 
 
 
@@ -29,9 +29,9 @@ if($conn){
 	$create_users_table_result = mysqli_query($conn, $create_users_query);
 
 	if($create_users_table_result){
-		echo "Done";
+		//echo "Done";
 	}else{
-		echo mysqli_error($conn);
+		// /echo mysqli_error($conn);
 	}
 
 

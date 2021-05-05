@@ -23,6 +23,8 @@ if($conn){
 			username VARCHAR(32) NOT NULL,
 			email VARCHAR(32) NOT NULL,
 			password VARCHAR(128) NOT NULL,
+			is_verified VARCHAR(18) NOT NULL DEFAULT('not_verified'),
+			verification_link VARCHAR(128) NULL,
 			date_registered TIMESTAMP NOT NULL
 	)";
 

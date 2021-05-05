@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 
 
 
@@ -39,7 +39,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 			$feedback = registerUser($username, $email, $password_confirm);
 
-			echo $feedback;
+			echo "<div class='alert alert-success'>
+			<div class='alert-header'><h5>$feedback</h5></div>
+			<p>You need to verify your email.</p></div>";
 
 		}else{
 

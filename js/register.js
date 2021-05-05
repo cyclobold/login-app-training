@@ -46,18 +46,6 @@ function checkPassUpperCase(inputPassword){
 }
 
 
-/**
- * Bring in the login form
- */
-
-$("#loginBtn_id").click(function(){
-
-	//bring in the sign in form
-	$("#register_login_id").load("_ajax_loaders/login.php");
-
-})
-
-
 
 
 

@@ -34,14 +34,24 @@
     <div class="control-group">
       <!-- Button -->
       <div class="controls">
-        <button class="btn btn-success" name='register'>Log in</button>
+        <button class="btn btn-success" name='login'>Log in</button>
       </div>
 
       <div class='controls mt-3'>
-        <button type='button' class='btn btn-primary' id='loginBtn_id'>Not Registered? Sign up</button>
+        <button type='button' class='btn btn-primary' id='registerBtn_id'>Not Registered? Sign up</button>
       </div>
     </div>
   </fieldset>
 </form>
   </div>
 </div>
+
+<script>
+    //when the register button is clicked
+  $("#registerBtn_id").click(function(){
+      //Remove appropriate data from localStorage
+      localStorage.removeItem("show-signup");
+      location.reload();
+
+    })  
+</script>

@@ -1,7 +1,7 @@
 <?php 
 $host = 'localhost';
 $user = 'root';
-$db_password = '';
+$db_password = 'root';
 $database_name = "login_app";
 
 
@@ -23,7 +23,8 @@ if($conn){
 			username VARCHAR(32) NOT NULL,
 			email VARCHAR(32) NOT NULL,
 			password VARCHAR(128) NOT NULL,
-			is_verified VARCHAR(18) NOT NULL DEFAULT('not_verified'),
+			is_verified VARCHAR(18) NOT NULL DEFAULT 'not_verified',
+			login_attempt INT NOT NULL DEFAULT 0,
 			verification_link VARCHAR(128) NULL,
 			date_registered TIMESTAMP NOT NULL
 	)";
@@ -33,7 +34,7 @@ if($conn){
 	if($create_users_table_result){
 		//echo "Done";
 	}else{
-		// /echo mysqli_error($conn);
+		//echo mysqli_error($conn);
 	}
 
 

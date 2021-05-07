@@ -48,6 +48,7 @@
   <div class="container">
     
     <div class='row'>
+      <?php require "processing/forms.php"; ?>
       <div class='col-md-6 m-auto' id="register_login_id">
 
         <div class='card'>
@@ -55,7 +56,7 @@
             <div class='card-title'>
             <div id="legend">
             <legend class="">Register</legend>
-            <?php require "processing/forms.php"; ?>
+            
             <span id='form_info'></span>
         </div>
         </div>

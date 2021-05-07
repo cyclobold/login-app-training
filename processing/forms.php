@@ -55,6 +55,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 
+	if(isset($_POST['login'])){
+
+		$email = trim($_POST['email']);
+		$password = trim($_POST['password']);
+
+		require "functions/login.php";
+
+		loginIn($email, $password);
+
+	}
+
+
+
 
 
 }

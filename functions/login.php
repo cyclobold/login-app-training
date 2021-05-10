@@ -1,4 +1,7 @@
 <?php 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 
 function loginIn($email, $password){
@@ -104,5 +107,66 @@ function check_login_attempt($email){
 
 
 	
+
+}
+
+
+
+function send_password_reset_link($email){
+	require "../database/db_connect.php";
+
+	require '../PHPMailer/src/Exception.php';
+	require '../PHPMailer/src/PHPMailer.php';
+	require '../PHPMailer/src/SMTP.php';
+
+
+	//build the link
+	$url = $_SERVER['HTTP_HOST'];	
+
+	$link = "localhost:8888/login-app/reset_password_page.php?em={$email}";
+
+
+	$mail = new PHPMailer(true);
+
+			try {
+				    //Server settings
+				    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+				    $mail->isSMTP();                                            //Send using SMTP
+				    $mail->Host       = 'smtp.mailtrap.io';                     //Set the SMTP server to send through
+				    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+				    $mail->Username   = '2f76ed5c75f26a';                     //SMTP username
+				    $mail->Password   = 'a9eb09efea59aa';                               //SMTP password
+				    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+				    $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+				    //Recipients
+				    $mail->setFrom('no-reply@login-app.com', 'Thank You');
+				    $mail->addAddress($email, 'User');     //Add a recipient
+
+				    //$mail->addReplyTo('info@example.com', 'Information');
+				    //$mail->addCC('cc@example.com');
+				    //$mail->addBCC('bcc@example.com');
+
+				    //Attachments
+				    //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+				    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+				    //Content
+				    $mail->isHTML(true);                                  //Set email format to HTML
+				    $mail->Subject = 'Password Reset Link';
+				    $mail->Body    = "Please click this link to reset your password!</b><br>
+				    	<a href='{$link}'>{$link}</a>
+				    ";
+				
+
+				    $mail->send();
+				    return "success";
+				} catch (Exception $e) {
+				    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+				}
+
+
+
+
 
 }

@@ -35,6 +35,7 @@
       <!-- Button -->
       <div class="controls">
         <button class="btn btn-success" name='login'>Log in</button>
+        <span>Forgot Password? <a href='reset_password.php'>Reset Password</a></span>
       </div>
 
       <div class='controls mt-3'>

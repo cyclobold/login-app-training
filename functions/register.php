@@ -1,4 +1,5 @@
 <?php 
+ini_set("display_errors", "on");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -40,12 +41,18 @@ function registerUser($username, $email, $password){
 			//return "User registered successfully!";
 			//Create the posts table and 
 			//Create the followers table
-			//
+			$new_registered_user_id = mysqli_insert_id($conn);
+			require_once "Classes/User.php";
+			//Add the user's password to the old passwords table
+			$user->registerPassword($new_registered_user_id, $password);
 			
 			//1 . Create the posts table
-			$new_registered_user_id = mysqli_insert_id($conn);
+			
 			//echo $new_registered_user_id;
 			$feedback = createUserPostsTable($new_registered_user_id);
+
+
+
 			if($feedback == 1){
 				//"User registered successfully!";
 				//1. create a verification link
@@ -56,7 +63,8 @@ function registerUser($username, $email, $password){
 				//get the url from the host
 				$url = $_SERVER['HTTP_HOST'];
 
-				$link = "http://".$url."/verify.php?em={$email}";
+				//$link = "http://".$url."/verify.php?em={$email}";
+				$link = "http://localhost:8888/login-app/verify.php?em=${email}";
 
 				//Send an email to the user
 				$mail = new PHPMailer(true);
@@ -88,7 +96,7 @@ function registerUser($username, $email, $password){
 				    $mail->isHTML(true);                                  //Set email format to HTML
 				    $mail->Subject = 'Thank you for registering';
 				    $mail->Body    = "Please click this link to verfiy your email!</b><br>
-				    	<a href='{$link}' target='_blank'>{$link}</a>
+				    	<a href='{$link}'>{$link}</a>
 				    ";
 				    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

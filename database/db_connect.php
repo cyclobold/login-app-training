@@ -38,4 +38,24 @@ if($conn){
 	}
 
 
+
+	//Users old password table
+	$create_users_password_query = "CREATE TABLE IF NOT EXISTS `users_old_password`(
+
+			id INT AUTO_INCREMENT PRIMARY KEY,
+			user_id INT NOT NULL,
+			passwords TEXT(5000) NOT NULL,
+			date_updated TIMESTAMP NOT NULL
+		)";
+
+	$create_users_passwords = mysqli_query($conn, $create_users_password_query);
+
+	if($create_users_passwords){
+		//echo 'done creating passwords table';
+	}else{
+		echo mysqli_error($conn);
+	}
+
+
+
 }
